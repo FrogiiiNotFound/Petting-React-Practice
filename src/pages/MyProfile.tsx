@@ -52,7 +52,6 @@ export const MyProfile = () => {
       [id]: value,
     }));
   };
-
   const changeData = (data: changedData) => {
     const changedData = {
       id: 0,
@@ -65,8 +64,6 @@ export const MyProfile = () => {
       userStatus: 0,
     };
     dispatch(changeUserData(changedData));
-
-    console.log(changedData);
   };
 
   return (

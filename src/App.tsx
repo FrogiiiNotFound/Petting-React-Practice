@@ -24,7 +24,7 @@ function App() {
         <Route path="my-profile" element={<MyProfile />} />
         <Route path="add-pet" element={<AddPet />} />
         <Route path="petSearch/all-pets" element={<PetSearch />} />
-        <Route path="petPage:id" element={<PetPage />} />
+        <Route path="petPage/:id" element={<PetPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

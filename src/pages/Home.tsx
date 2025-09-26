@@ -85,7 +85,7 @@ export const Home = () => {
               spaceBetween={30}
               slidesPerView={4}>
               {recentItems.map((obj: TPetInfo) => (
-                <SwiperSlide key={obj.id}>
+                <SwiperSlide>
                   <PetCard {...obj} />
                 </SwiperSlide>
               ))}

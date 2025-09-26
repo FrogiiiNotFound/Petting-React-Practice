@@ -3,23 +3,17 @@ import instagram from 'images/footer/instagram.png';
 import telegram from 'images/footer/telegram.png';
 import tiktok from 'images/footer/tiktok.png';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { setActiveLink } from '../../redux/Slices/navigationSlice';
-import type { RootState } from '../../redux/store';
 
 export const Footer = () => {
   const dispatch = useDispatch();
+  const [phoneNumber, setPhoneNumber] = useState('+7(987)175-29-73');
+  const [phoneNumber2, setPhoneNumber2] = useState('+7(987)281-86-58');
 
-  const { activeLink } = useSelector((state: RootState) => state.navigation);
-
-  const phoneNumber1 = '+7(987)175-29-73';
-  const phoneNumber2 = '+7(987)281-86-58';
-  const [text1, setText1] = useState(phoneNumber1);
-  const [text2, setText2] = useState(phoneNumber2);
-
-  const copy = (e: React.MouseEvent<HTMLAnchorElement>, number: string, setText: any) => {
-    e.preventDefault();
+  const copyPhone = (event: React.MouseEvent<HTMLAnchorElement>, number: string, setText: any) => {
+    event.preventDefault();
     navigator.clipboard
       .writeText(number)
       .then(() => setText('Номер скопирован!'))
@@ -122,17 +116,17 @@ export const Footer = () => {
             <li className="mb-[7px]">
               <a
                 className="cursor-pointer hover:!text-gray-300"
-                href={`tel:${phoneNumber1}`}
-                onClick={(e) => copy(e, phoneNumber1, setText1)}>
-                {text1}
+                href={`tel:${phoneNumber}`}
+                onClick={(e) => copyPhone(e, phoneNumber, setPhoneNumber)}>
+                {phoneNumber}
               </a>
             </li>
             <li className="mb-[7px]">
               <a
                 className="cursor-pointer hover:!text-gray-300"
                 href={`tel:${phoneNumber2}`}
-                onClick={(e) => copy(e, phoneNumber2, setText2)}>
-                {text2}
+                onClick={(e) => copyPhone(e, phoneNumber2, setPhoneNumber2)}>
+                {phoneNumber2}
               </a>
             </li>
             <li className="">

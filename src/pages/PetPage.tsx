@@ -1,15 +1,44 @@
 import { receivePet } from '@/redux/Slices/petsSlice';
 import { useAppDispatch } from '@/redux/store';
+import type { TPetInfo } from '@/types/Slices/SearchSlice';
 import petTemplateImage from 'images/petPage/templateImage.jpg';
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, useParams } from 'react-router-dom';
 
 const PetPage = () => {
   const dispatch = useAppDispatch();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const id = searchParams.get('id');
-  console.log(id);
+  const [phoneNumber, setPhoneNumber] = useState('+7(987)175-29-73');
+  const [currentPet, setCurrentPet] = useState<TPetInfo>({
+    id: 100,
+    category: {
+      id: 100,
+      name: '',
+    },
+    name: '',
+    photoUrls: [],
+    tags: [],
+    status: '',
+  });
+  const { id } = useParams();
 
-  // const petData = dispatch(receivePet())
+  const receivePetData = async () => {
+    const petData = await dispatch(receivePet('1001'));
+
+    setCurrentPet(petData.payload);
+    console.log(petData.payload);
+  };
+  const copyPhone = (event: React.MouseEvent<HTMLAnchorElement>, number: string, setText: any) => {
+    event.preventDefault();
+    navigator.clipboard
+      .writeText(number)
+      .then(() => setText('Номер скопирован!'))
+      .finally(() => setTimeout(() => setText(number), 2000));
+  };
+
+  useEffect(() => {
+    receivePetData();
+  }, []);
+
   return (
     <div className="py-block">
       <div className="_container">
@@ -21,47 +50,45 @@ const PetPage = () => {
             <div>
               <div className="flex gap-[40px] mb-[30px]">
                 <div>
-                  <p className="text-lg">Имя</p>
-                  <p className="text-2xl">Dogyyy</p>
+                  <p className="text-[14px]">Имя</p>
+                  <p className="text-2xl">{currentPet.name}</p>
                 </div>
                 <div>
-                  <p className="text-lg">Вид</p>
-                  <p className="text-2xl">Собака</p>
+                  <p className="text-[14px]">Вид</p>
+                  <p className="text-xl">{currentPet.category.name}</p>
                 </div>
               </div>
               <div>
-                <p className="text-lg mb-[10px]">Теги:</p>
+                <p className="text-[14px] mb-[10px]">Теги:</p>
                 <div className="flex flex-wrap gap-[10px] max-w-[500px] mb-[30px]">
-                  <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
-                    Общительная
-                  </p>
-                  <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
-                    Общительная
-                  </p>
-                  <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
-                    Общительная
-                  </p>
-                  <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
-                    Общительная
-                  </p>
-                  <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
-                    Общительная
-                  </p>
-                  <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
-                    Общительная
-                  </p>
+                  {currentPet.tags.map((tag) => {
+                    return (
+                      <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
+                        {tag.name}
+                      </p>
+                    );
+                  })}
                 </div>
               </div>
-              <div className="flex gap-[40px]">
+              <div className="flex gap-[80px]">
                 <div>
-                  <p className="text-lg">Статус:</p>
-                  <p className="text-2xl">Ищет хозяина</p>
+                  <p className="text-[14px]">Статус:</p>
+                  <p className="text-xl">Ищет хозяина</p>
                 </div>
                 <div>
-                  <p className="text-lg">Написать:</p>
+                  <p className="text-[14px]">Написать:</p>
                   <div>
-                    <p className="text-[20px]">+7 987 875 38 98</p>
-                    <p className="text-[20px]">igonAndrey@gmail.com</p>
+                    <a
+                      className="cursor-pointer hover:!text-gray-500"
+                      href={`tel:${phoneNumber}`}
+                      onClick={(e) => copyPhone(e, phoneNumber, setPhoneNumber)}>
+                      {phoneNumber}
+                    </a>
+                    <div className="cursor-pointer hover:!text-gray-500">
+                      <a href={`mailto:frogiiinotfound@gmail.com`} className="text-[16px]">
+                        frogiiinotfound@gmail.com
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -89,8 +116,20 @@ const PetPage = () => {
                 <p>Petting</p>
                 <p className="text-sm">℗</p>
               </div>
-              <p className="text-sm mb-[3px] cursor-pointer hover:!text-gray-500">Наша команда</p>
-              <p className="text-sm cursor-pointer hover:!text-gray-500">Вакансии</p>
+              <div>
+                <a
+                  href="https://t.me/FrogiiiNotFound"
+                  className="text-sm mb-[3px] cursor-pointer hover:!text-gray-500">
+                  Наша команда
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://t.me/FrogiiiNotFound"
+                  className="text-sm cursor-pointer hover:!text-gray-500">
+                  Вакансии
+                </a>
+              </div>
             </div>
           </div>
         </div>

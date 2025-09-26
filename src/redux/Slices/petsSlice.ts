@@ -24,15 +24,18 @@ export const addPet = createAsyncThunk('pets/addPet', async (data: TPetInfo, thu
   }
 });
 
-export const receivePet = createAsyncThunk('pets/receivePet', async (id: number, thunkApi) => {
-  try {
-    const response = await axios.get(`${API_BASE_URL}/pets/${id}`);
+export const receivePet = createAsyncThunk(
+  'pets/receivePet',
+  async (id: string | undefined, thunkApi) => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/pet/${id}`);
 
-    return response.data;
-  } catch (error: any) {
-    return thunkApi.rejectWithValue(error.message);
-  }
-});
+      return response.data;
+    } catch (error: any) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  },
+);
 
 const initialState: IPetsState = {
   myPets: [],

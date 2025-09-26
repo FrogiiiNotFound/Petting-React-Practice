@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const PetCard: React.FC<TPetInfo> = ({ category, name, photoUrls, tags, status, id }) => {
   const navigate = useNavigate();
   const navigateToPetPage = () => {
-    navigate(`/petPage&id=${id}`);
+    navigate(`/petPage/${id}`);
   };
 
   return (

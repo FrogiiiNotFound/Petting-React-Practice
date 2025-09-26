@@ -45,9 +45,9 @@ export const Header = () => {
           </div>
           <div className="flex gap-[20px] items-center">
             <div className="flex gap-[10px]">
-              <p className="hover:text-gray-400 cursor-pointer hover:scale-104">RU</p>
+              <p className="cursor-pointer hover:scale-104">RU</p>
               <p className="select-none">|</p>
-              <p className="hover:text-gray-400 cursor-pointer hover:scale-110">EN</p>
+              <p className=" text-gray-600 ">EN</p>
             </div>
             <div className="flex gap-[20px] items-center">
               {isAuth ? (
