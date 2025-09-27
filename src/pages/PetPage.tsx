@@ -25,7 +25,6 @@ const PetPage = () => {
     const petData = await dispatch(receivePet('1001'));
 
     setCurrentPet(petData.payload);
-    console.log(petData.payload);
   };
   const copyPhone = (event: React.MouseEvent<HTMLAnchorElement>, number: string, setText: any) => {
     event.preventDefault();
@@ -51,11 +50,11 @@ const PetPage = () => {
               <div className="flex gap-[40px] mb-[30px]">
                 <div>
                   <p className="text-[14px]">Имя</p>
-                  <p className="text-2xl">{currentPet.name}</p>
+                  <p className="text-2xl">{currentPet?.name}</p>
                 </div>
                 <div>
                   <p className="text-[14px]">Вид</p>
-                  <p className="text-xl">{currentPet.category.name}</p>
+                  <p className="text-xl">{currentPet?.category?.name}</p>
                 </div>
               </div>
               <div>
@@ -63,7 +62,9 @@ const PetPage = () => {
                 <div className="flex flex-wrap gap-[10px] max-w-[500px] mb-[30px]">
                   {currentPet.tags.map((tag) => {
                     return (
-                      <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
+                      <p
+                        key={tag.id}
+                        className="bg-green-200 py-[3px] px-[5px] rounded-md text-[15px]">
                         {tag.name}
                       </p>
                     );
