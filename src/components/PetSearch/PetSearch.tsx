@@ -1,8 +1,6 @@
-import * as React from 'react';
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -10,11 +8,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-import PetCard from '../PetCard/PetCard';
 import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import message from 'images/petSearch/searching.jpg';
-import { Check, ChevronsUpDown } from 'lucide-react';
 import {
   Command,
   CommandEmpty,
@@ -23,14 +17,20 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { onPageChange, searchAllPets, searchFilter } from '@/redux/Slices/searchSlice';
 import { useAppDispatch } from '@/redux/store';
 import type { TPetInfo } from '@/types/Slices/SearchSlice';
+import message from 'images/petSearch/searching.jpg';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import * as React from 'react';
 import { useSelector } from 'react-redux';
+import PetCard from '../PetCard/PetCard';
 import { Checkbox } from '../ui/checkbox';
 import Pagination from './Pagination';
+import { Loading } from '../Loading/Loading';
 
 const frameworks = [
   {
@@ -61,7 +61,7 @@ const PetSearch = () => {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
   const [currentItems, setCurrentItems] = React.useState<TPetInfo[]>([]);
-  const { currentPage, availablePets } = useSelector(searchFilter);
+  const { currentPage, availablePets, loading } = useSelector(searchFilter);
 
   const countPetsPerPage = () => {
     const offset = currentPage * petsPerPage;
@@ -73,11 +73,9 @@ const PetSearch = () => {
   const onChangePage = (page: number) => {
     dispatch(onPageChange(page));
   };
-
   const searchPetList = async () => {
     dispatch(searchAllPets());
   };
-
   const pets = currentItems.map((obj: TPetInfo) => {
     return <PetCard {...obj} />;
   });
@@ -187,7 +185,11 @@ const PetSearch = () => {
           </AlertDialog>
         </div>
         <Pagination currentPage={currentPage} onChangePage={onChangePage} />
-        <div className="flex gap-[20px] flex-wrap mb-[40px]">{pets}</div>
+        {loading === 'success' ? (
+          <div className="flex gap-[20px] flex-wrap mb-[40px]">{pets}</div>
+        ) : (
+          <Loading />
+        )}
       </div>
     </div>
   );

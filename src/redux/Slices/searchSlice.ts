@@ -5,22 +5,20 @@ import axios from 'axios';
 
 export const searchAllPets = createAsyncThunk('search/searchAllPets', async (data, thunkApi) => {
   try {
-    const responseItems = await axios.get(
+    const response = await axios.get(
       'https://petstore.swagger.io/v2/pet/findByStatus?status=available',
-      {
-        headers: {
-          accept: 'application/json',
-        },
-      },
+      { headers: { accept: 'application/json' } },
     );
-    thunkApi.dispatch(setAvailablePets(responseItems.data));
-    
+    thunkApi.dispatch(setAvailablePets(response.data));
+
+    return response.data;
   } catch (error: any) {
-    thunkApi.rejectWithValue(error.message);
+    return thunkApi.rejectWithValue(error.message);
   }
 });
 
 const initialState: ISearchState = {
+  loading: 'idle',
   currentPage: 1,
   availablePets: [],
 };
@@ -35,6 +33,12 @@ const authSlice = createSlice({
     setAvailablePets(state, action: PayloadAction<TPetInfo[]>) {
       state.availablePets = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(searchAllPets.fulfilled, (state) => {
+      state.loading = 'success';
+      console.log('loaded');
+    });
   },
 });
 

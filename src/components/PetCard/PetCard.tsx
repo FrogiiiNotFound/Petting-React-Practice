@@ -8,7 +8,6 @@ const PetCard: React.FC<TPetInfo> = ({ category, name, photoUrls, tags, status, 
   const navigateToPetPage = () => {
     navigate(`/petPage/${id}`);
   };
-  console.log(photoUrls[0], name);
 
   const getSafeImageUrl = (url: string, fallback: string) => {
     if (!url || typeof url !== 'string') return fallback;
@@ -23,26 +22,13 @@ const PetCard: React.FC<TPetInfo> = ({ category, name, photoUrls, tags, status, 
     ) {
       return fallback;
     }
-
-    // Расширенные паттерны для проверки изображений
     const validImagePatterns = [
-      // Data URLs: data:image/jpeg;base64,... или data:image/png;base64,...
       /^data:image\/(jpeg|jpg|png|gif|webp|svg\+xml|bmp|tiff);base64,[a-zA-Z0-9+/]+={0,2}$/,
-
-      // HTTP/HTTPS URLs с распространенными расширениями изображений
       /^https?:\/\/.+\.(jpeg|jpg|png|gif|webp|svg|bmp|tiff)(\?.*)?$/i,
-
-      // HTTP/HTTPS URLs без явного расширения (может быть API endpoint)
       /^https?:\/\/[^\s/$.?#].[^\s]*$/i,
-
-      // Относительные пути с расширениями изображений
       /^\.?\.?\/[^\s]+\.(jpeg|jpg|png|gif|webp|svg|bmp|tiff)(\?.*)?$/i,
-
-      // Простые относительные пути (без расширения, но допустимые для маршрутизации)
       /^\.?\.?\/[^\s]*$/,
     ];
-
-    // Проверяем хотя бы по одному паттерну
     const isValid = validImagePatterns.some((pattern) => pattern.test(trimmedUrl));
 
     return isValid ? trimmedUrl : fallback;

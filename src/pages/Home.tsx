@@ -15,6 +15,7 @@ import 'swiper/css';
 // @ts-ignore
 import 'swiper/css/navigation';
 
+import { Loading } from '@/components/Loading/Loading';
 import { searchAllPets, searchFilter } from '@/redux/Slices/searchSlice';
 import { useAppDispatch } from '@/redux/store';
 import type { TPetInfo } from '@/types/Slices/SearchSlice';
@@ -25,11 +26,12 @@ import '../css/home.css';
 export const Home = () => {
   const dispatch = useAppDispatch();
   const [recentItems, setRecentItems] = React.useState<TPetInfo[]>([]);
-  const { availablePets } = useSelector(searchFilter);
+  const { availablePets, loading } = useSelector(searchFilter);
+  console.log(loading);
 
   React.useEffect(() => {
     dispatch(searchAllPets());
-  }, [dispatch]);
+  }, []);
 
   React.useEffect(() => {
     if (availablePets.length > 0) {
@@ -75,25 +77,29 @@ export const Home = () => {
         <div className="_container py-[80px]">
           <h2 className="text-3xl mb-[40px]">Последние объявления</h2>
           <div className="relative">
-            <Swiper
-              modules={[Navigation, Autoplay]}
-              navigation={{
-                nextEl: '.swiper-button-next-custom',
-                prevEl: '.swiper-button-prev-custom',
-              }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }}
-              spaceBetween={30}
-              slidesPerView={4}>
-              {recentItems.map((obj: TPetInfo) => (
-                <SwiperSlide>
-                  <PetCard {...obj} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            {loading === 'success' ? (
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                navigation={{
+                  nextEl: '.swiper-button-next-custom',
+                  prevEl: '.swiper-button-prev-custom',
+                }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                spaceBetween={30}
+                slidesPerView={4}>
+                {recentItems.map((obj: TPetInfo) => (
+                  <SwiperSlide>
+                    <PetCard {...obj} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            ) : (
+              <Loading />
+            )}
 
             <div className="swiper-button-prev-custom absolute top-[220px] left-[-70px] cursor-pointer">
               <img className="w-[60px] rotate-180" src={arrow} alt="Предыдущий" />

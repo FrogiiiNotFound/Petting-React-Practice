@@ -11,6 +11,7 @@ export type TPetInfo = {
 };
 
 export interface ISearchState {
+  loading: 'idle' | 'success';
   currentPage: number;
   availablePets: TPetInfo[];
 }
