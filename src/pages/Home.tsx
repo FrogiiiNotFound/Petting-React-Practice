@@ -22,12 +22,14 @@ import type { TPetInfo } from '@/types/Slices/SearchSlice';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import '../css/home.css';
+import AnimatedText from '@/components/AnimatedText/AnimatedText';
+import TypewriterText from '@/components/AnimatedText/AnimatedText';
+import AdvancedAnimatedText from '@/components/AnimatedText/AnimatedText';
 
 export const Home = () => {
   const dispatch = useAppDispatch();
   const [recentItems, setRecentItems] = React.useState<TPetInfo[]>([]);
   const { availablePets, loading } = useSelector(searchFilter);
-  console.log(loading);
 
   React.useEffect(() => {
     dispatch(searchAllPets());
@@ -43,24 +45,30 @@ export const Home = () => {
   return (
     <div className="">
       <div className="py-block relative">
-        <div className="_container py-[80px] text-black flex gap-[200px]">
+        <div className="_container py-[80px] text-black flex gap-[200px] max-[900px]:flex-col-reverse max-[900px]:gap-[50px]">
           <div>
             <div className="mb-[30px]">
-              <h1 className="text-4xl mb-[20px]">
-                Petting - доска объявлений для передачи домашних питомцев в хорошие руки!
+              <h1 className="text-4xl mb-[20px] max-w-[500px] max-[900px]:!text-center max-[900px]:!mx-auto max-[530px]:text-xl">
+                <div className="max-[900px]:inline-block">
+                  <AnimatedText
+                    text={
+                      'Petting - доска объявлений для передачи домашних питомцев в хорошие руки!'
+                    }
+                  />
+                </div>
               </h1>
-              <p className="text-md max-w-[800px] mb-[10px]">
+              <p className="text-md max-w-[800px] mb-[10px] max-[900px]:text-center max-[530px]:text-sm max-[530px]:text-left">
                 Мы верим, что каждый питомец заслуживает любящую семью, а каждая семья - верного
                 компаньона. Здесь вы найдете тех, кто готов подарить вам свою любовь и преданность.
                 Посмотрите на наших андреев, и, возможно, именно здесь вас ждет ваша судьба!
               </p>
-              <p className="text-destructive">
+              <p className="text-destructive max-[900px]:text-center max-[530px]:text-sm max-[530px]:text-left">
                 На данный момент я использую бесплатное, общее API в этом пет-проекте и оно может
                 вызывать ошибки или показывать пустые объявления.
               </p>
             </div>
             <NavLink to="/petSearch/all-pets">
-              <div className="cursor-pointer flex gap-[15px] items-center bg-green-300 max-w-[200px] justify-center p-[15px] rounded-xl hover:scale-104">
+              <div className="max-[900px]:mx-auto cursor-pointer flex gap-[15px] items-center bg-green-300 max-w-[200px] justify-center p-[15px] rounded-xl hover:scale-104">
                 <div className="mt-[-10px]">
                   <img className="w-[30px]" src={dogIcon} alt="dogIcon" />
                 </div>
@@ -69,13 +77,19 @@ export const Home = () => {
             </NavLink>
           </div>
           <div>
-            <img className="max-w-[100%]" src={mainIcon} alt="" />
+            <img
+              className="max-w-[100%] max-[900px]:!max-w-[80%] max-[900px]:!mx-auto"
+              src={mainIcon}
+              alt=""
+            />
           </div>
         </div>
       </div>
-      <div className="py-block">
+      <div className="py-block bg">
         <div className="_container py-[80px]">
-          <h2 className="text-3xl mb-[40px]">Последние объявления</h2>
+          <h2 className="text-3xl mb-[40px] max-[900px]:!text-center max-[900px]:!max-w-[360px] max-[900px]:!mx-auto max-[900px]:w-full">
+            Последние объявления
+          </h2>
           <div className="relative">
             {loading === 'success' ? (
               <Swiper
@@ -90,9 +104,30 @@ export const Home = () => {
                   pauseOnMouseEnter: true,
                 }}
                 spaceBetween={30}
-                slidesPerView={4}>
+                slidesPerView={1}
+                breakpoints={{
+                  480: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 25,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                  },
+                  1280: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                  },
+                }}
+                loop={true}
+                speed={600}
+                grabCursor={true}>
                 {recentItems.map((obj: TPetInfo) => (
-                  <SwiperSlide>
+                  <SwiperSlide key={obj.id}>
                     <PetCard {...obj} />
                   </SwiperSlide>
                 ))}
@@ -110,7 +145,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <div className="py-block bg">
+      <div className="py-block">
         <div className="_container py-[80px]">
           <h2 className="text-3xl mb-[20px]">О нас</h2>
           <div className="flex gap-[100px] items-center">

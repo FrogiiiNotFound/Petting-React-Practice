@@ -17,12 +17,12 @@ export const Header = () => {
         <div className="flex justify-between items-center">
           <div className="flex gap-[40px] items-center">
             <NavLink to="/" onClick={() => dispatch(setActiveLink('/'))}>
-              <div className="text-4xl cursor-pointer flex">
+              <div className="text-4xl cursor-pointer flex max-md:text-2xl">
                 <p>Petting</p>
                 <p className="text-sm">℗</p>
               </div>
             </NavLink>
-            <div className="flex gap-[20px]">
+            <div className="flex gap-[20px] max-[530px]:hidden">
               <NavLink to="/" onClick={() => dispatch(setActiveLink('/'))}>
                 <p
                   className={`cursor-pointer hover:scale-110 ${
@@ -44,28 +44,28 @@ export const Header = () => {
             </div>
           </div>
           <div className="flex gap-[20px] items-center">
-            <div className="flex gap-[10px]">
+            <div className="flex gap-[10px] max-[900px]:hidden">
               <p className="cursor-pointer hover:scale-104">RU</p>
               <p className="select-none">|</p>
               <p className=" text-gray-600 ">EN</p>
             </div>
-            <div className="flex gap-[20px] items-center">
+            <div className="flex gap-[20px] items-center max-[530px]:!gap-[10px]">
               {isAuth ? (
                 <NavLink to="add-pet" onClick={() => dispatch(setActiveLink(''))}>
-                  <div className="flex gap-[10px] items-center bg-green-300 p-[10px] rounded-xl cursor-pointer hover:scale-104">
+                  <div className="max-[900px]:block md:hidden flex gap-[10px] items-center bg-green-300 p-[10px] rounded-xl cursor-pointer hover:scale-104">
                     <div>
                       <img className="w-[20px]" src={plus} alt="" />
                     </div>
-                    <p>Добавить объявление</p>
+                    <p className="md:hidden">Добавить объявление</p>
                   </div>
                 </NavLink>
               ) : (
                 <NavLink to="sign-up" onClick={() => dispatch(setActiveLink(''))}>
                   <div className="flex gap-[10px] items-center bg-green-300 p-[10px] rounded-xl cursor-pointer hover:scale-104">
                     <div>
-                      <img className="w-[20px]" src={plus} alt="" />
+                      <img className="w-[20px] max-[530px]:w-[10px]" src={plus} alt="" />
                     </div>
-                    <p>Добавить объявление</p>
+                    <p className="max-[900px]:hidden">Добавить объявление</p>
                   </div>
                 </NavLink>
               )}
@@ -85,7 +85,7 @@ export const Header = () => {
                     className="flex gap-[10px] items-center cursor-pointer hover:scale-110"
                     onClick={() => dispatch(setActiveLink(''))}>
                     <NavLink to="/sign-up">
-                      <p className="text-md">Создать аккаунт</p>
+                      <p className="text-md max-[530px]:text-sm">Создать аккаунт</p>
                     </NavLink>
                   </div>
                 )}

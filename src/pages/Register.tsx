@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import '../css/register.css';
+import AnimatedText from '@/components/AnimatedText/AnimatedText';
 
 export const Register = () => {
   const dispatch = useAppDispatch();
@@ -39,8 +40,12 @@ export const Register = () => {
 
   return (
     <div className="py-block">
-      <div className="_container py-[100px] text-black">
-        <h2 className="text-3xl mb-[15px] text-center">Регистрация</h2>
+      <div className="_container py-[100px] text-black max-[530px]:py-[50px]">
+        <h2 className="text-3xl mb-[30px] text-center">
+          <div className="inline-block">
+            <AnimatedText text={'Регистрация'} />
+          </div>
+        </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-[492px] mx-auto"
@@ -66,6 +71,7 @@ export const Register = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.username ? 'register__error-input' : ''}`}
               placeholder="Никнейм*"
               {...register('username', {
@@ -78,7 +84,7 @@ export const Register = () => {
             />
             <p className="register__error-message">{errors.username?.message}</p>
           </div>
-          <div className="flex gap-[10px]">
+          <div className="flex gap-[10px] max-[530px]:flex-col max-[530px]:gap-[0px]">
             <div className="flex flex-col mb-[20px]">
               <input
                 required
@@ -99,6 +105,7 @@ export const Register = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.firstName ? 'register__error-input' : ''}`}
                 {...register('firstName', { required: 'Имя обязательно' })}
               />
@@ -123,6 +130,7 @@ export const Register = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.lastName ? 'register__error-input' : ''}`}
                 {...register('lastName')}
               />
@@ -149,6 +157,7 @@ export const Register = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.password ? 'register__error-input' : ''}`}
               {...register('password', {
                 required: 'Пароль обязателен',
@@ -180,6 +189,7 @@ export const Register = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.phone ? 'register__error-input' : ''}`}
               {...register('phone', {
                 required: 'Телефон обязателен',
@@ -211,6 +221,7 @@ export const Register = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.email ? 'register__error-input' : ''}`}
               {...register('email', {
                 required: 'Почта обязательна',

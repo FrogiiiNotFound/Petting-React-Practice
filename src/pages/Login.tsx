@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { getUserData, loginUser } from '../redux/Slices/authSlice';
 import { useAppDispatch, type RootState } from '../redux/store';
+import AnimatedText from '@/components/AnimatedText/AnimatedText';
 
 export const Login = () => {
   const dispatch = useAppDispatch();
@@ -31,7 +32,7 @@ export const Login = () => {
       },
     });
   };
-  
+
   const onSubmit = async (data: formValues) => {
     dispatch(loginUser(data));
     dispatch(getUserData(data));
@@ -40,9 +41,13 @@ export const Login = () => {
   };
 
   return (
-    <div className="py-block">
+    <div className="py-block min-h-[60vh]">
       <div className="_container py-[100px] text-black">
-        <h2 className="text-3xl mb-[15px] text-center">Войти</h2>
+        <h2 className="text-3xl mb-[30px] text-center">
+          <div className="inline-block">
+            <AnimatedText text={'Войти'} />
+          </div>
+        </h2>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="max-w-[492px] mx-auto"
@@ -68,6 +73,7 @@ export const Login = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.login ? 'register__error-input' : ''}`}
               placeholder="Логин*"
               {...register('login', {
@@ -101,6 +107,7 @@ export const Login = () => {
                 transition-all
                 duration-300
                 font-nunito
+                max-[530px]:!text-[14px]
                 !bg-white ${errors.password ? 'register__error-input' : ''}`}
               {...register('password', {
                 required: 'Пароль обязателен',

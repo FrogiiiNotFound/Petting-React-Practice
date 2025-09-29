@@ -34,7 +34,7 @@
   align-items: center;
   justify-content: center;
 
-  gap: 150px;
+  gap: 10px;
 }
 
 .about-us__aside-2 {
@@ -55,12 +55,12 @@
 }
 
 .about-us__column-row img {
-  max-width: 70%;
+  max-width: 200px;
 }
 
 .about-us__column-horizontal img {
-  max-width: 143%;
+  max-width: 100%;
 }
-.about-us__imageVertical img { 
-  max-width: 141%;
+.about-us__imageVertical img {
+  max-width: 300px;
 }

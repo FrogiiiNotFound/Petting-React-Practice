@@ -22,9 +22,9 @@ export const Footer = () => {
 
   return (
     <div className="py-block bg-green-900 pt-[40px] pb-[20px] text-white relative">
-      <div className="_container flex gap-[100px]">
-        <NavLink to="/">
-          <div className="text-3xl cursor-pointer flex">
+      <div className="_container flex gap-[100px] max-[1250px]:gap-[50px] max-[985px]:flex-col max-[985px]:gap-[30px] max-[985px]:text-center">
+        <NavLink to="/" onClick={() => dispatch(setActiveLink('/'))}>
+          <div className="text-3xl cursor-pointer flex max-[985px]:justify-center">
             <p>Petting</p>
             <p className="text-sm">℗</p>
           </div>
@@ -51,14 +51,14 @@ export const Footer = () => {
             <li>
               <NavLink
                 className="cursor-pointer hover:!text-gray-300"
-                to="/petSearch/my-pets"
+                to="/petSearch/all-pets"
                 onClick={() => dispatch(setActiveLink('/petSearch/all-pets'))}>
                 Мои объявления
               </NavLink>
             </li>
           </ul>
         </div>
-        <div>
+        <div className="max-[985px]:hidden">
           <h3 className="text-2xl mb-[20px]">Дополнительно</h3>
           <ul>
             <li className="mb-[7px]">
@@ -84,7 +84,7 @@ export const Footer = () => {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="max-[985px]:hidden">
           <h3 className="text-2xl mb-[20px]">О компании</h3>
           <ul>
             <li className="mb-[7px]">
@@ -130,7 +130,7 @@ export const Footer = () => {
               </a>
             </li>
             <li className="">
-              <ul className="flex gap-[7px]">
+              <ul className="flex gap-[7px] max-[985px]:justify-center">
                 <li className="cursor-pointer">
                   <a href="https://t.me/FrogiiiNotFound">
                     <img className="w-[35px]" src={telegram} alt="telegram" />
@@ -158,7 +158,7 @@ export const Footer = () => {
         </div>
         <p className="text-sm">All rights reserved</p>
       </div>
-      <div className="absolute top-[-12.5%] right-[10px] max-w-[50px]">
+      <div className="absolute top-[-34px] right-[10px] max-w-[50px]">
         <img src={footerDecor2} alt="" />
       </div>
     </div>
