@@ -14,13 +14,13 @@ const PetCard: React.FC<TPetInfo> = ({ category, name, photoUrls, tags, status, 
     <div className="bg-white max-w-[345px] rounded-xl p-[15px]">
       <div className="mb-[10px] text-center mx-[auto]">
         <img
-          className="min-w-[200px] min-h-[200px]"
+          className="min-w-[200px] min-h-[200px] max-[720px]:max-w-[250px] max-[720px]:max-h-[250px] mx-auto"
           src={getSafeImageUrl(photoUrls[0], defaultImage)}
           alt=""
         />
       </div>
       <div className="flex gap-[10px] items-end mb-[15px]">
-        <h3 className="text-[26px]">{name}</h3>
+        <h3 className="text-[26px] max-[720px]:text-[24px]">{name}</h3>
         <p className="text-[14px]">{category?.name}</p>
       </div>
       <div className="mb-[20px]">
@@ -29,12 +29,20 @@ const PetCard: React.FC<TPetInfo> = ({ category, name, photoUrls, tags, status, 
           {tags[0]?.name &&
             tags.map((obj) => {
               return (
-                <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px]">{obj?.name}</p>
+                <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px] max-[720px]:text-[11px]">
+                  {obj?.name}
+                </p>
               );
             })}
-          <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px]">Общительная</p>
-          <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px]">Загрызла 2 людей</p>
-          <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px]">Умная</p>
+          <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px] max-[720px]:text-[11px]">
+            Общительная
+          </p>
+          <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px] max-[720px]:text-[11px]">
+            Загрызла 2 людей
+          </p>
+          <p className="bg-green-200 py-[3px] px-[5px] rounded-md text-[13px] max-[720px]:text-[11px]">
+            Умная
+          </p>
         </ul>
       </div>
       <div>

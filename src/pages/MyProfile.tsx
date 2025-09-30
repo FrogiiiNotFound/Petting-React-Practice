@@ -69,7 +69,7 @@ export const MyProfile = () => {
   return (
     <div className="py-block my-[40px]">
       <div className="_container pt-[20px] text-black flex justify-center gap-[50px]">
-        <div className="bg-white rounded-xl shadow-2xl p-[20px] pr-[60px] flex flex-col justify-between">
+        <div className="bg-white rounded-xl shadow-2xl p-[20px] pr-[60px] flex flex-col justify-between max-[1250px]:hidden">
           <div>
             <NavLink to="petSearch/all-pets">
               <p className="text-[18px] mb-[10px] border-b border-black hover:!text-gray-500">
@@ -123,7 +123,7 @@ export const MyProfile = () => {
           <div className="flex gap-[40px] justify-center">
             <div>
               <img
-                className="w-[150px] p-[10px] border border-black rounded-[10%]"
+                className="w-[150px] p-[10px] border border-black rounded-[10%] max-[1250px]:"
                 src={defaultPicture}
                 alt="defaultPicture"
               />

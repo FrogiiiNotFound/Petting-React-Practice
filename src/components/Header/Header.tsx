@@ -52,18 +52,18 @@ export const Header = () => {
             <div className="flex gap-[20px] items-center max-[530px]:!gap-[10px]">
               {isAuth ? (
                 <NavLink to="add-pet" onClick={() => dispatch(setActiveLink(''))}>
-                  <div className="max-[900px]:block md:hidden flex gap-[10px] items-center bg-green-300 p-[10px] rounded-xl cursor-pointer hover:scale-104">
+                  <div className="flex gap-[10px] items-center bg-green-300 p-[10px] rounded-xl cursor-pointer hover:scale-104">
                     <div>
-                      <img className="w-[20px]" src={plus} alt="" />
+                      <img className="w-[20px] max-[530px]:w-[10px]" src={plus} alt="plus" />
                     </div>
-                    <p className="md:hidden">Добавить объявление</p>
+                    <p className="max-[900px]:hidden">Добавить объявление</p>
                   </div>
                 </NavLink>
               ) : (
                 <NavLink to="sign-up" onClick={() => dispatch(setActiveLink(''))}>
                   <div className="flex gap-[10px] items-center bg-green-300 p-[10px] rounded-xl cursor-pointer hover:scale-104">
                     <div>
-                      <img className="w-[20px] max-[530px]:w-[10px]" src={plus} alt="" />
+                      <img className="w-[20px] max-[530px]:w-[10px]" src={plus} alt="plus" />
                     </div>
                     <p className="max-[900px]:hidden">Добавить объявление</p>
                   </div>

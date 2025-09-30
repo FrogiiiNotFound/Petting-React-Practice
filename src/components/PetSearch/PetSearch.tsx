@@ -90,8 +90,8 @@ const PetSearch = () => {
   return (
     <div className="py-block">
       <div className="_container">
-        <div className="flex justify-between items-center mt-[50px] mb-[20px]">
-          <div className="flex gap-[10px] items-center">
+        <div className="flex justify-between items-center mt-[50px] mb-[20px] flex-wrap max-[630px]:justify-center max-[630px]:gap-[30px]">
+          <div className="flex gap-[10px] items-center flex-wrap max-[475px]:justify-center max-[475px]:gap-[20px]">
             <div>
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
@@ -186,7 +186,7 @@ const PetSearch = () => {
         </div>
         <Pagination currentPage={currentPage} onChangePage={onChangePage} />
         {loading === 'success' ? (
-          <div className="flex gap-[20px] flex-wrap mb-[40px]">{pets}</div>
+          <div className="flex gap-[20px] flex-wrap mb-[40px] justify-center">{pets}</div>
         ) : (
           <Loading />
         )}

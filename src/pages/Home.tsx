@@ -147,32 +147,32 @@ export const Home = () => {
       </div>
       <div className="py-block">
         <div className="_container py-[80px]">
-          <h2 className="text-3xl mb-[20px]">О нас</h2>
-          <div className="flex gap-[100px] items-center">
+          <h2 className="text-3xl mb-[20px] max-[880px]:text-center ">О нас</h2>
+          <div className="flex gap-[100px] items-center max-[1300px]:flex-col">
             <div>
               <div className="max-w-[1500px] bg-white p-[40px] rounded-4xl">
-                <p className="mb-[10px] max-w-[90%]">
+                <p className="mb-[10px] max-w-[90%] max-[1300px]:mx-auto">
                   Мы - команда <span className="">преданных</span> своему делу людей, объединенных
                   любовью к животным и искренним желанием помочь им найти любящие дома. Мы верим,
                   что каждое животное заслуживает заботы, внимания и семьи, где его будут ценить.
                 </p>
-                <p className="mb-[10px] max-w-[90%]">
+                <p className="mb-[10px] max-w-[90%] max-[1300px]:mx-auto">
                   Наша платформа - это не просто доска объявлений. Мы тщательно отбираем животных,
                   представленных на нашем сайте, и стараемся предоставить максимально полную
                   информацию о каждом питомце, включая его характер, историю и особенности.
                 </p>
-                <p className="mb-[10px] max-w-[90%]">
+                <p className="mb-[10px] max-w-[90%] max-[1300px]:mx-auto">
                   Мы тесно сотрудничаем с приютами, волонтерами и временными опекунами, чтобы
                   убедиться, что животные находятся в безопасности и получают необходимый уход.
                 </p>
-                <p className="mb-[10px] max-w-[90%]">
+                <p className="mb-[10px] max-w-[90%] max-[1300px]:mx-auto">
                   Если вы готовы открыть свое сердце и дом для нуждающегося животного, просмотрите
                   объявления и найдите своего компаньона.
                 </p>
               </div>
             </div>
             <div>
-              <div className="about-us__aside">
+              <div className="about-us__aside max-[1300px]:!max-w-[720px] max-[880px]:!hidden">
                 <div className="about-us__column">
                   <div className="about-us__column-row">
                     <img className="about-us__image" src={secondImage} alt="" />

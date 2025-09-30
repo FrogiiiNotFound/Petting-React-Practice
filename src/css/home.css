@@ -30,6 +30,7 @@
 }
 
 .about-us__aside {
+  min-width: 720px;
   display: flex;
   align-items: center;
   justify-content: center;
